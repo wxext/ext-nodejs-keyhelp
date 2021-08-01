@@ -66,7 +66,8 @@ async function sayHello() {
     console.log('发送结果:' + JSON.stringify(h))
 }
 function RunApp() {
-    const url = `ws://127.0.0.1:8202/wx?name=${app.name}&key=${app.key}`
+    const url = `ws://127.0.0.1:8202/wx?name=${encodeURIComponent(app.name)}&key=${app.key}`
+    console.error('连接地址',url)
     client.on('connectFailed', function (error) {
         console.error('Connect Error: ' + error.toString());
     });
