@@ -1,4 +1,4 @@
-const app = { data: {} }
+const app = { data: { '好': '大家好才是真的好' } }
     , WebSocketClient = require('./websocket')
     , client = new WebSocketClient()
     , fs = require('fs')
@@ -46,7 +46,7 @@ async function TextMessage(obj) {
 async function onRequest(obj) {
     //收到请求
     //返回应用数据
-    return send({ data: app.data })
+    return { data: app.data }
 }
 async function onMessage(obj) {
     console.log('收到消息', obj)
@@ -67,7 +67,7 @@ async function sayHello() {
 }
 function RunApp() {
     const url = `ws://127.0.0.1:8202/wx?name=${encodeURIComponent(app.name)}&key=${app.key}`
-    console.error('连接地址',url)
+    console.error('连接地址', url)
     client.on('connectFailed', function (error) {
         console.error('Connect Error: ' + error.toString());
     });
